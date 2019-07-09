@@ -33,4 +33,4 @@ The current UI is not ideal and it has been developed only for testing (during t
 
 ## Contributions
 
-All are welcome to contribute to this open source effort.
+All are welcome and encouraged to contribute to this open source effort.
