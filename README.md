@@ -10,14 +10,14 @@ Uses the MVVM (Model-View-ViewModel) pattern. So the goal is to use Fragments wi
 
 ## Backend
 
-The backend is designed to update the frontend as data is updated. No mechanism has yet been implemented to notify the app when datasets change on remote.
+The backend is designed to update the frontend as data is updated; however, no mechanism has yet been implemented to notify the app when datasets change on remote.
 
-Database: Room
-Network: Retrofit 2, Picasso (not yet used)
-Threading: Kotlin Coroutines
-DI: Dagger 2 (not yet used)
-Testing: JUnit, Espresso
-Debugging: Stetho
+Database: Room <BR>
+Network: Retrofit 2, Picasso (not yet used) <BR>
+Threading: Kotlin Coroutines <BR>
+DI: Dagger 2 (not yet used) <BR>
+Testing: JUnit, Espresso <BR>
+Debugging: Stetho <BR>
 
 ## Frontend
 
