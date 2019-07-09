@@ -21,7 +21,7 @@ Debugging: Stetho <BR>
 
 ## Frontend
 
-The current UI is not ideal and it has been developed only for testing (during the backend development). Any additions/changes to the UI should take advantage of the backend's ability to provide updated data immediately.
+The current UI is not ideal and it has been developed only for testing (during the backend development). Any additions/changes to the UI should take advantage of the backend's ability to provide updated data instantly.
 
 ## Planned Enhancements
 
