@@ -28,19 +28,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import assyrianoss.android.assyrianwords.R
-import assyrianoss.android.assyrianwords.view.detail.WordDetailFragment
 import assyrianoss.android.assyrianwords.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_wordlist.view.*
 
-class WordListFragment(val viewModel: AppViewModel, val category: String) : Fragment() {
-
-    companion object {
-        private val FRAGMENT_TAG: String = WordDetailFragment::getTag.toString()
-    }
+class WordListFragment : Fragment() {
 
     private lateinit var adapter: WordListAdapter
+    private lateinit var category: String
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,12 +48,29 @@ class WordListFragment(val viewModel: AppViewModel, val category: String) : Frag
     ): View? {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.fragment_wordlist, container, false)
+        init(view)
+        return view
+    }
+
+    private fun init(view: View) {
+        setupVariables()
+        setupViewModel()
         setupRecyclerViewAdapter()
         setupAdapterOnClickListener()
         setupRecyclerView(view)
         queryWordList()
         registerObserverOnWords()
-        return view
+    }
+
+    private fun setupVariables() {
+        val args: WordListFragmentArgs by navArgs()
+        category = args.category
+    }
+
+    private fun setupViewModel() {
+        activity?.run {
+            viewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
+        }
     }
 
     private fun setupRecyclerViewAdapter() {
@@ -64,14 +81,9 @@ class WordListFragment(val viewModel: AppViewModel, val category: String) : Frag
         adapter.setOnItemClickListener(object :
             WordListAdapter.OnItemClickListener {
             override fun onItemClick(wordId: Int) {
-                fragmentManager?.beginTransaction()
-                    ?.add(
-                        R.id.frameLayout,
-                        WordDetailFragment(viewModel, wordId),
-                        FRAGMENT_TAG
-                    )
-                    ?.addToBackStack(FRAGMENT_TAG)
-                    ?.commit()
+                val action = WordListFragmentDirections
+                    .actionWordListFragmentToWordDetailFragment(wordId)
+                view?.findNavController()?.navigate(action)
             }
         })
     }

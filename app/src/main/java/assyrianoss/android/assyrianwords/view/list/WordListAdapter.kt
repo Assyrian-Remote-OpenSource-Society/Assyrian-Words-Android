@@ -70,7 +70,7 @@ class WordListAdapter(val viewModel: AppViewModel) : RecyclerView.Adapter<WordLi
         val definition: TextView = itemView.textView2
 
         init {
-            itemView.setOnClickListener { view ->
+            itemView.setOnClickListener {
                 val position: Int = adapterPosition
                 viewModel.queriedWords.value?.get(position)?.let { word ->
                     listener.onItemClick(word.id)

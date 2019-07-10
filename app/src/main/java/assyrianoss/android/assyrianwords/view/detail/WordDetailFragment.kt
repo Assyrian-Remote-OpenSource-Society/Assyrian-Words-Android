@@ -28,24 +28,46 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import assyrianoss.android.assyrianwords.R
 import assyrianoss.android.assyrianwords.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_word_detail.view.*
 
-class WordDetailFragment(private val viewModel: AppViewModel, val wordId: Int) : Fragment() {
+class WordDetailFragment() : Fragment() {
 
-    lateinit var adapter: WordDetailAdapter
+    private var wordId: Int = 0
+
+    private lateinit var adapter: WordDetailAdapter
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.fragment_word_detail, container, false)
+        init(view)
+        return view
+    }
+
+    private fun init(view: View) {
+        setupVariables()
+        setupViewModel()
         setupRecyclerViewAdapter()
         setupRecyclerView(view)
         queryWordById()
         registerObserverOnWords()
-        return view
+    }
+
+    private fun setupVariables() {
+        val args: WordDetailFragmentArgs by navArgs()
+        wordId = args.wordId
+    }
+
+    private fun setupViewModel() {
+        activity?.run {
+            viewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
+        }
     }
 
     private fun setupRecyclerViewAdapter() {

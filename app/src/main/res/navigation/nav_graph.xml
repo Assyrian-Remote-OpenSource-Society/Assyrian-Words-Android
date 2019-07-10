@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation_graph"
+            app:startDestination="@id/categoryFragment">
+
+    <fragment android:id="@+id/categoryFragment"
+              android:name="assyrianoss.android.assyrianwords.view.category.CategoryFragment"
+              android:label="CategoryFragment">
+        <action android:id="@+id/action_categoryFragment_to_wordListFragment" app:destination="@+id/wordListFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:popUpTo="@+id/categoryFragment"/>
+    </fragment>
+    <fragment android:id="@+id/wordListFragment"
+              android:name="assyrianoss.android.assyrianwords.view.list.WordListFragment"
+              android:label="WordListFragment">
+        <argument android:name="category" app:argType="string"/>
+        <action android:id="@+id/action_wordListFragment_to_wordDetailFragment"
+                app:destination="@id/wordDetailFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" app:popUpTo="@+id/wordListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/wordDetailFragment"
+              android:name="assyrianoss.android.assyrianwords.view.detail.WordDetailFragment"
+              android:label="WordDetailFragment">
+        <argument android:name="wordId" app:argType="integer"/>
+    </fragment>
+</navigation>

@@ -25,8 +25,8 @@ package assyrianoss.android.assyrianwords.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import assyrianoss.android.assyrianwords.R
-import assyrianoss.android.assyrianwords.view.category.CategoryFragment
 import assyrianoss.android.assyrianwords.viewmodel.AppViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -49,10 +49,6 @@ class MainActivity : AppCompatActivity() {
         setupLayout()
     }
 
-    /**
-     * Get ViewModel for the main part of the app. This ViewModel
-     * object will be passed down to the fragments, as needed.
-     */
     private fun setupViewModel() {
         viewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
     }
@@ -61,16 +57,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchAllKnownDataSets()
     }
 
-    /**
-     * Show the category fragment as the first view.
-     */
     private fun setupLayout() {
-        supportFragmentManager.beginTransaction()
-            .add(
-                frameLayout.id,
-                CategoryFragment(viewModel),
-                CategoryFragment::getTag.toString()
-            )
-            .commit()
+        nav_host_fragment?.findNavController()
     }
 }

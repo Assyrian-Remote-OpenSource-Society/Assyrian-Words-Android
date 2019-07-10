@@ -63,14 +63,12 @@ class WordCategoryAdapter(val viewModel: AppViewModel) : RecyclerView.Adapter<Wo
         val textView: TextView = itemView.categoryTextView
 
         init {
-            itemView.setOnClickListener(View.OnClickListener { view ->
+            itemView.setOnClickListener {
                 val position: Int = adapterPosition
-                println("itemView has been clicked...")
                 viewModel.categories.value?.get(position)?.let { category ->
-                    println("Category clicked: $category")
                     listener.onItemClick(category)
                 }
-            })
+            }
         }
     }
 }

@@ -127,9 +127,7 @@ class AppRepository(application: Application) : Repository {
      * Insert a word into the database.
      */
     override fun insertWord(word: Word) {
-        println("AppRepository.insertWord(word)")
         GlobalScope.launch {
-            //println("Inserting word... ${word.phonetic}")
             wordDao.insert(word)
         }
     }

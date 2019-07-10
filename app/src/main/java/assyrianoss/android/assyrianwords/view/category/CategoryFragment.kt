@@ -28,29 +28,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import assyrianoss.android.assyrianwords.R
 import assyrianoss.android.assyrianwords.model.persistence.entities.Category
-import assyrianoss.android.assyrianwords.view.list.WordListFragment
 import assyrianoss.android.assyrianwords.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_category.view.*
 
-class CategoryFragment(val viewModel: AppViewModel) : Fragment() {
+class CategoryFragment : Fragment() {
 
-    companion object {
-        private val FRAGMENT_TAG: String = WordListFragment::getTag.toString()
-    }
-
-    lateinit var adapter: WordCategoryAdapter
+    private lateinit var adapter: WordCategoryAdapter
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.fragment_category, container, false)
+        setupViewModel()
         setupRecyclerViewAdapter()
         setupAdapterOnClickListener()
         setupRecyclerView(view)
         registerObserverOnCategories()
         return view
+    }
+
+    private fun setupViewModel() {
+        activity?.run {
+            viewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
+        }
     }
 
     private fun setupRecyclerViewAdapter() {
@@ -61,17 +66,9 @@ class CategoryFragment(val viewModel: AppViewModel) : Fragment() {
         adapter.setOnItemClickListener(object :
             WordCategoryAdapter.OnItemClickListener {
             override fun onItemClick(category: Category) {
-                fragmentManager?.beginTransaction()
-                    ?.add(
-                        R.id.frameLayout,
-                        WordListFragment(
-                            viewModel,
-                            category.name
-                        ),
-                        FRAGMENT_TAG
-                    )
-                    ?.addToBackStack(FRAGMENT_TAG)
-                    ?.commit()
+                val action = CategoryFragmentDirections
+                    .actionCategoryFragmentToWordListFragment(category.name)
+                view?.findNavController()?.navigate(action)
             }
         })
     }
