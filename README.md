@@ -6,7 +6,7 @@ This project is currently in an early phase.
 
 ## Architecture
 
-Uses the MVVM (Model-View-ViewModel) pattern. So the goal is to use Fragments within a single Activity as often as possible – in order to stay within the same lifecycle. This is in favor of sharing data resources across multiple screens – by using the same ViewModel instance.
+Uses the MVVM (Model-View-ViewModel) pattern. The goal is to use Fragments within a single Activity as often as possible. This is in favor of sharing data resources across multiple screens – by using the same ViewModel instance.
 
 ## Backend
 
@@ -22,6 +22,8 @@ Debugging: Stetho <BR>
 ## Frontend
 
 The current UI is not ideal and it has been developed only for testing (during the backend development). Any additions/changes to the UI should take advantage of the backend's ability to provide updated data instantly.
+
+Transactions: Navigation, Safe Args
 
 ## Planned Enhancements
 
