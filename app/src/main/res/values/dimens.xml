@@ -40,7 +40,7 @@
     <dimen name="detail_list_item_text_size">24sp</dimen>
 
     <!-- fragment_word_detail.xml -->
-    <item name="motion_layout_show_paths" format="boolean" type="dimen">true</item>
+    <item name="motion_layout_show_paths" format="boolean" type="dimen">false</item>
     <dimen name="detail_recyclerview_width">0dp</dimen>
     <dimen name="detail_recyclerview_height">0dp</dimen>
     <dimen name="detail_toolbar_imageview_width">0dp</dimen>

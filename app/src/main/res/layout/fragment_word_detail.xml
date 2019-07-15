@@ -30,7 +30,7 @@
         android:focusable="false"
         android:clickable="false"
         app:layoutDescription="@xml/header_collapsing_toolbar"
-        app:showPaths="true"
+        app:showPaths="@dimen/motion_layout_show_paths"
         tools:showPaths="@dimen/motion_layout_show_paths"
         tools:context=".view.MainActivity">
 
