@@ -1,3 +1,72 @@
+<!--
+  ~ Copyright 2019 Assyrian Remote Open Source Society
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to
+  ~ deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  ~ sell copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  ~ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  ~ IN THE SOFTWARE.
+  -->
+
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- list_item_category.xml -->
+    <dimen name="list_item_category_constraintlayout_height">60dp</dimen>
+    <dimen name="list_item_category_text_size">24sp</dimen>
+
+    <!-- list_item_word.xml -->
+    <dimen name="list_item_word_constraintlayout_height">60dp</dimen>
+    <dimen name="list_item_word_textview_0_width">0dp</dimen>
+    <dimen name="list_item_word_textview_1_width">0dp</dimen>
+    <dimen name="list_item_word_textview_2_width">0dp</dimen>
+    <dimen name="list_item_word_row_0_text_size">24sp</dimen>
+    <dimen name="list_item_word_row_1_text_size">24sp</dimen>
+    <dimen name="list_item_word_row_2_text_size">24sp</dimen>
+
+    <!-- detail_list_item_content.xml -->
+    <dimen name="detail_list_item_constraintlayout_height">60dp</dimen>
+    <dimen name="detail_list_item_text_size">24sp</dimen>
+
+    <!-- fragment_word_detail.xml -->
+    <item name="motion_layout_show_paths" format="boolean" type="dimen">true</item>
+    <dimen name="detail_recyclerview_width">0dp</dimen>
+    <dimen name="detail_recyclerview_height">0dp</dimen>
+    <dimen name="detail_toolbar_imageview_width">0dp</dimen>
+    <dimen name="detail_toolbar_imageview_height">200dp</dimen>
+    <dimen name="detail_toolbar_back_button_padding">16dp</dimen>
+    <dimen name="detail_toolbar_bookmark_button_padding">16dp</dimen>
+    <dimen name="detail_header_component_layout_padding_top">32dp</dimen>
+    <dimen name="detail_header_component_layout_padding_left">0dp</dimen>
+    <dimen name="detail_header_component_layout_padding_bottom">32dp</dimen>
+    <dimen name="detail_header_component_layout_padding_right">0dp</dimen>
+    <dimen name="detail_header_component_layout_margin">32dp</dimen>
+    <dimen name="detail_header_assyriac_text_size">32sp</dimen>
+    <dimen name="detail_header_phonetic_text_size">16sp</dimen>
+
+    <!-- header_collapsing_toolbar.xml -->
+    <dimen name="toolbar_imageview_expanded_height">200dp</dimen>
+    <!-- expanded -->
+    <dimen name="header_components_expanded_margin_lateral">32dp</dimen>
+    <dimen name="header_components_expanded_margin_bottom">24dp</dimen>
+    <item name="toolbar_imageview_expanded_alpha_value" format="integer" type="dimen">255</item>
+    <item name="header_components_expanded_scale_x" format="float" type="dimen">1.0</item>
+    <item name="header_components_expanded_scale_y" format="float" type="dimen">1.0</item>
+    <!-- expanded -->
+    <dimen name="header_components_collapsed_margin_lateral">0dp</dimen>
+    <dimen name="header_components_collapsed_margin_bottom">0dp</dimen>
+    <item name="toolbar_imageview_collapsed_alpha_value" format="integer" type="dimen">0</item>
+    <item name="header_components_collapsed_scale_x" format="float" type="dimen">0.625</item>
+    <item name="header_components_collapsed_scale_y" format="float" type="dimen">0.625</item>
 </resources>

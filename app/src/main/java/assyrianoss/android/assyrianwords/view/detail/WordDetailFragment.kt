@@ -29,6 +29,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import assyrianoss.android.assyrianwords.R
@@ -42,8 +43,10 @@ class WordDetailFragment() : Fragment() {
     private lateinit var adapter: WordDetailAdapter
     private lateinit var viewModel: AppViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.fragment_word_detail, container, false)
         init(view)
@@ -53,6 +56,7 @@ class WordDetailFragment() : Fragment() {
     private fun init(view: View) {
         setupVariables()
         setupViewModel()
+        setupUi(view)
         setupRecyclerViewAdapter()
         setupRecyclerView(view)
         queryWordById()
@@ -62,6 +66,61 @@ class WordDetailFragment() : Fragment() {
     private fun setupVariables() {
         val args: WordDetailFragmentArgs by navArgs()
         wordId = args.wordId
+    }
+
+    private fun setupUi(view: View) {
+        setupToolbarBackButtonClickListener(view)
+        setupToolbarBookmarkImage(view)
+        setupToolbarBookmarkClickListener(view)
+        setupToolbarText(view)
+    }
+
+    private fun setupToolbarBackButtonClickListener(view: View) {
+        view.detailToolbarBackButton.setOnClickListener {
+            view.findNavController().popBackStack()
+        }
+    }
+
+    private fun setupToolbarBookmarkImage(view: View) {
+        toggleBookmarkImage(view)
+    }
+
+    private fun setupToolbarBookmarkClickListener(view: View) {
+        view.detailBookmarkButton.setOnClickListener {
+            toggleBookmarkImage(view)
+        }
+    }
+
+    private fun setupToolbarText(view: View) {
+        viewModel.getWord(wordId).observe(this, Observer {
+            it?.let {word ->
+                setupToolbarAssyriacText(view, word.easternAssyriac)
+                setupToolbarPhoneticText(view, word.easternPhonetic)
+                setupToolbarAudioButton(view, false) // TODO: pass value from word
+            }
+        })
+    }
+
+    private fun setupToolbarAssyriacText(view: View, text: String) {
+        view.headerAssyriacTextView.text = text
+    }
+
+    private fun setupToolbarPhoneticText(view: View, text: String) {
+        view.headerPhoneticTextView.text = text
+    }
+
+    private fun setupToolbarAudioButton(view: View, hasAudio: Boolean) {
+        // TODO: build function
+    }
+
+    private fun toggleBookmarkImage(view: View) {
+        if (viewModel.isWordBookmarked(wordId)) {
+            view.detailBookmarkButton.setImageResource(R.drawable.ic_bookmark_white_24dp)
+            viewModel.unbookmarkWord(wordId)
+        } else {
+            view.detailBookmarkButton.setImageResource(R.drawable.ic_bookmark_gray_opaque_24dp)
+            viewModel.bookmarkWord(wordId)
+        }
     }
 
     private fun setupViewModel() {

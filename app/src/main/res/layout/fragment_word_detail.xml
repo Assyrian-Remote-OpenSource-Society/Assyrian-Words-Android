@@ -1,16 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!--
+  ~ Copyright 2019 Assyrian Remote Open Source Society
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to
+  ~ deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  ~ sell copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  ~ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  ~ IN THE SOFTWARE.
+  -->
+
+<androidx.constraintlayout.motion.widget.MotionLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/wordDetailConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EFEFEF"
+        android:focusable="false"
+        android:clickable="false"
+        app:layoutDescription="@xml/header_collapsing_toolbar"
+        app:showPaths="true"
+        tools:showPaths="@dimen/motion_layout_show_paths"
         tools:context=".view.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detailRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/detail_list_item_content" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="@dimen/detail_recyclerview_width"
+            android:layout_height="@dimen/detail_recyclerview_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailToolbarImageView" />
+
+    <ImageView
+            android:id="@+id/detailToolbarImageView"
+            android:layout_width="@dimen/detail_toolbar_imageview_width"
+            android:layout_height="@dimen/detail_toolbar_imageview_height"
+            android:adjustViewBounds="true"
+            android:scaleType="center"
+            android:background="@color/colorPrimary"
+            android:focusable="false"
+            android:clickable="false"
+            android:contentDescription="@null"
+            android:fitsSystemWindows="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+            android:id="@+id/detailToolbarBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/detail_toolbar_back_button_padding"
+            android:paddingEnd="@dimen/detail_toolbar_back_button_padding"
+            android:paddingTop="@dimen/detail_toolbar_back_button_padding"
+            android:paddingBottom="@dimen/detail_toolbar_back_button_padding"
+            android:focusable="true"
+            android:clickable="true"
+            android:tint="@color/headerBackButtonColor"
+            android:src="@drawable/abc_ic_ab_back_material"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+            android:id="@+id/detailBookmarkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/detail_toolbar_bookmark_button_padding"
+            android:paddingEnd="@dimen/detail_toolbar_bookmark_button_padding"
+            android:paddingTop="@dimen/detail_toolbar_bookmark_button_padding"
+            android:paddingBottom="@dimen/detail_toolbar_bookmark_button_padding"
+            android:focusable="true"
+            android:clickable="true"
+            android:src="@drawable/ic_bookmark_white_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerComponentsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/detail_header_component_layout_padding_left"
+            android:paddingLeft="@dimen/detail_header_component_layout_padding_left"
+            android:paddingEnd="@dimen/detail_header_component_layout_padding_right"
+            android:paddingRight="@dimen/detail_header_component_layout_padding_right"
+            android:paddingBottom="@dimen/detail_header_component_layout_padding_bottom"
+            android:paddingTop="@dimen/detail_header_component_layout_padding_top"
+            android:layout_marginEnd="@dimen/detail_header_component_layout_margin"
+            android:layout_marginRight="@dimen/detail_header_component_layout_margin"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@id/detailToolbarImageView"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+                android:id="@+id/headerAssyriacTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/detail_header_assyriac_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/headerAssyriacTextColor"
+                android:text="Word"
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/headerPhoneticTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/detail_header_phonetic_text_size"
+                android:textStyle="normal"
+                android:textColor="@color/headerPhoneticTextColor"
+                android:text="phonetic"
+                android:focusable="true"
+                android:clickable="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/headerAssyriacTextView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

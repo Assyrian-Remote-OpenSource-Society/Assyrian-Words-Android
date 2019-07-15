@@ -64,7 +64,7 @@ class CategoryFragmentTest {
     @Test
     fun openWordListFragment_ClickOnCategoryListItem_ShouldShowWordListFragment() {
         /**
-         * Last line might fail due to slow emulator.
+         * Flaky factor: last line might fail due to slow emulator.
          */
         onView(withId(R.id.categoryRecyclerView))
             .perform(

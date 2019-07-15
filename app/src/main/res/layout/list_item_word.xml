@@ -1,75 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2019 Assyrian Remote Open Source Society
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to
+  ~ deal in the Software without restriction, including without limitation the
+  ~ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  ~ sell copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  ~ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  ~ IN THE SOFTWARE.
+  -->
+
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="false"
+        android:clickable="false"
         android:layout_marginStart="8dp" android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
         android:layout_marginTop="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/constraintLayout0"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
             <TextView
                     android:id="@+id/textView0"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:textSize="24sp"
+                    android:layout_width="@dimen/list_item_word_textview_0_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/list_item_word_row_0_text_size"
                     android:textStyle="bold"
-                    android:text="..." android:layout_marginBottom="8dp"/>
+                    android:focusable="true"
+                    android:clickable="false"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:clickable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout0">
 
             <TextView
                     android:id="@+id/textView1"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/list_item_word_textview_1_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/list_item_word_row_1_text_size"
                     android:textStyle="normal"
-                    android:text="..." android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
+                    android:focusable="true"
+                    android:clickable="false"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+                    android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout1" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/list_item_word_textview_2_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/list_item_word_row_2_text_size"
                     android:textStyle="normal"
-                    android:text="..." android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
+                    android:focusable="true"
+                    android:clickable="false"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

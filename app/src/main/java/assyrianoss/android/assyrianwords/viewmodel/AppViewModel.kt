@@ -73,6 +73,25 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         return queriedWords
     }
 
+    var bookmarkState = false // for UI testing only
+
+    fun bookmarkWord(wordId: Int) {
+        // TODO: build function – store value in database
+        // for UI testing only
+        bookmarkState = true
+    }
+
+    fun unbookmarkWord(wordId: Int) {
+        // TODO: build function – store value in database
+        // for UI testing only
+        bookmarkState = false
+    }
+
+    fun isWordBookmarked(wordId: Int): Boolean {
+        // TODO: build function – retrieve value from database
+        return bookmarkState  // for UI testing only
+    }
+
     /**
      * The advantage in making a Room query is that,
      * if this word is updated while the user is looking
