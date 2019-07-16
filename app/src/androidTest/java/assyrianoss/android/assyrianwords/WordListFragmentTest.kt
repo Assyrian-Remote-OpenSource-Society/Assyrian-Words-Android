@@ -55,6 +55,9 @@ class WordListFragmentTest {
 
     @Before
     fun init() {
+        /**
+         * Flaky factor: might fail due to slow emulator.
+         */
         Espresso.onView(withId(R.id.categoryRecyclerView))
             .perform(
                 RecyclerViewActions
@@ -77,6 +80,9 @@ class WordListFragmentTest {
 
     @Test
     fun openWordDetailFragment_clickOnWordListItem_shouldShowWordDetailFragment() {
+        /**
+         * Flaky factor: might fail due to slow emulator.
+         */
         Espresso.onView(withId(R.id.wordsRecyclerView))
             .perform(
                 RecyclerViewActions

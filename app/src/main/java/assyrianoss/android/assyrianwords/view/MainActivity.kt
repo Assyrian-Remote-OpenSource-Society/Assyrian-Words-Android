@@ -30,7 +30,7 @@ import assyrianoss.android.assyrianwords.R
 import assyrianoss.android.assyrianwords.viewmodel.AppViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.activity_main_content.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setContentView(R.layout.activity_main_content)
         init()
     }
 
