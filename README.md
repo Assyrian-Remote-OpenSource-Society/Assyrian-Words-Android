@@ -23,8 +23,8 @@ Debugging: Stetho <BR>
 
 The current UI is not ideal and it has been developed only for testing (during the backend development). Any additions/changes to the UI should take advantage of the backend's ability to provide updated data instantly.
 
-Transactions: Navigation, Safe Args
-Animations: MotionLayout
+Transactions: Navigation, Safe Args <BR>
+Animations: MotionLayout <BR>
 
 ## Planned Enhancements
 
