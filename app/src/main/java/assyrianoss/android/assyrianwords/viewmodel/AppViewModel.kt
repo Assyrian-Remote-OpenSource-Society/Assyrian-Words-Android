@@ -28,10 +28,19 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import assyrianoss.android.assyrianwords.model.persistence.entities.Category
 import assyrianoss.android.assyrianwords.model.persistence.entities.Word
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancelChildren
+import kotlin.coroutines.CoroutineContext
 
-class AppViewModel(application: Application) : AndroidViewModel(application) {
+class AppViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 
-    val repository: AppRepository = AppRepository(application)
+    private val job = SupervisorJob()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    val repository: AppRepository = AppRepository(application, coroutineContext)
     var categories: LiveData<List<Category>>
     var entireWordsTable: LiveData<List<Word>>
     lateinit var queriedWords: LiveData<List<Word>>
@@ -40,6 +49,11 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     init {
         categories = repository.readAllCategories()
         entireWordsTable = repository.readEntireWordsTable()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        coroutineContext.cancelChildren()
     }
 
     fun fetchAllKnownDataSets() {

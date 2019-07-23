@@ -30,11 +30,13 @@ import assyrianoss.android.assyrianwords.model.persistence.daos.CategoryDao
 import assyrianoss.android.assyrianwords.model.persistence.daos.WordDao
 import assyrianoss.android.assyrianwords.model.persistence.entities.Category
 import assyrianoss.android.assyrianwords.model.persistence.entities.Word
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class AppRepository(application: Application) : Repository {
+class AppRepository(
+    application: Application, override val coroutineContext: CoroutineContext
+) : Repository,
+    CoroutineScope {
 
     companion object {
         private const val BASE_URL: String = "https://raw.githubusercontent.com/"
@@ -50,8 +52,11 @@ class AppRepository(application: Application) : Repository {
     private var db: AppDatabase = AppDatabase.getInstance(application)
     private var categoryDao: CategoryDao = db.categoryDao()
     private var wordDao: WordDao = db.wordDao()
-    private var githubFetcher: GithubFetcher = GithubFetcher(BASE_URL, GROUP, REPO,
-        BRANCH, filePaths)
+    private var githubFetcher: GithubFetcher = GithubFetcher(
+        BASE_URL, GROUP, REPO,
+        BRANCH, filePaths, application.applicationContext,
+        coroutineContext
+    )
     private lateinit var categories: LiveData<List<Category>>
     private lateinit var allWords: LiveData<List<Word>>
     private lateinit var queriedWords: LiveData<List<Word>>
@@ -68,7 +73,7 @@ class AppRepository(application: Application) : Repository {
      * Insert a category name in the database.
      */
     override fun insertCategory(category: Category) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             categoryDao.insert(category)
         }
     }
@@ -77,7 +82,7 @@ class AppRepository(application: Application) : Repository {
      * Update a category name in the database.
      */
     override fun updateCategory(category: Category) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             categoryDao.update(category)
         }
     }
@@ -86,7 +91,7 @@ class AppRepository(application: Application) : Repository {
      * Delete a category name from the database.
      */
     override fun deleteCategory(category: Category) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             categoryDao.delete(category)
         }
     }
@@ -95,7 +100,7 @@ class AppRepository(application: Application) : Repository {
      * Delete all category names from the database.
      */
     override fun deleteAllCategories() {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             categoryDao.deleteAll()
         }
     }
@@ -127,7 +132,7 @@ class AppRepository(application: Application) : Repository {
      * Insert a word into the database.
      */
     override fun insertWord(word: Word) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             wordDao.insert(word)
         }
     }
@@ -136,7 +141,7 @@ class AppRepository(application: Application) : Repository {
      * Insert a list of words into the database.
      */
     override fun insertWords(words: List<Word>) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             wordDao.insertList(words)
         }
     }
@@ -145,7 +150,7 @@ class AppRepository(application: Application) : Repository {
      * Update a specific word in the database.
      */
     override fun updateWord(word: Word) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             wordDao.update(word)
         }
     }
@@ -154,7 +159,7 @@ class AppRepository(application: Application) : Repository {
      * Delete a specific word in the database.
      */
     override fun deleteWord(word: Word) {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             wordDao.delete(word)
         }
     }
@@ -163,7 +168,7 @@ class AppRepository(application: Application) : Repository {
      * Delete all words in the database.
      */
     override fun deleteAllWords() {
-        GlobalScope.launch {
+        launch(Dispatchers.Default) {
             wordDao.deleteAll()
         }
     }
