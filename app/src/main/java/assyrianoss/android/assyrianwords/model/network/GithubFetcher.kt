@@ -22,17 +22,24 @@
 
 package assyrianoss.android.assyrianwords.model.network
 
+import android.content.Context
+import android.os.Handler
+import android.widget.Toast
 import assyrianoss.android.assyrianwords.model.persistence.AppDatabase
 import assyrianoss.android.assyrianwords.model.persistence.daos.CategoryDao
 import assyrianoss.android.assyrianwords.model.persistence.daos.WordDao
 import assyrianoss.android.assyrianwords.model.persistence.entities.Word
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import assyrianoss.android.assyrianwords.view.util.ErrorToast
+import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.coroutines.CoroutineContext
 
-class GithubFetcher(val baseUrl: String, val group: String, val repo: String,
-                    val branch: String, val filePaths: List<String>) {
+class GithubFetcher(
+    val baseUrl: String, val group: String, val repo: String,
+    val branch: String, val filePaths: List<String>,
+    val appContext: Context, override val coroutineContext: CoroutineContext
+) : CoroutineScope {
 
     private lateinit var retrofit: Retrofit
 
@@ -53,14 +60,24 @@ class GithubFetcher(val baseUrl: String, val group: String, val repo: String,
         }
     }
 
-    fun fetch(filePath: String, wordDao: WordDao, categoryDao: CategoryDao) {
-        GlobalScope.launch {
-            val service = retrofit.create(GithubService::class.java)
-            val content = service.getFile(group, repo, branch, filePath)
+    fun fetch(filePath: String, wordDao: WordDao, categoryDao: CategoryDao) = launch(Dispatchers.Default) {
+        val service = retrofit.create(GithubService::class.java)
+        val content = service.getFile(group, repo, branch, filePath)
+        try {
             val words: List<Word>? = content.execute().body()
             words?.let {
                 AppDatabase.store(it, wordDao, categoryDao)
             }
+        } catch (e: Exception) {
+            showConnectionError(e)
         }
+    }
+
+    private fun showConnectionError(e: Exception?) {
+        Handler(appContext.mainLooper).post(Runnable {
+            ErrorToast.makeText(appContext,
+                "Could not download data.",
+                Toast.LENGTH_LONG).show()
+        })
     }
 }
